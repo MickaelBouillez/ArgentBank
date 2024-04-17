@@ -50,6 +50,10 @@ body {
     color: #2c3e50;
 }
 
+.main-nav i {
+    padding: 0 5px;
+}
+
 .main-nav a.router-link-exact-active {
     color: #42b983;
 }
@@ -70,11 +74,10 @@ body {
 
 .main-nav-logo-image {
     max-width: 100%;
-    width: 200px;
 }
 
 .hero {
-    background-image: url('../image/bank-tree.jpeg');
+    background-image: url("../image/bank-tree.webp");
     background-position: 0 -50px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -131,6 +134,13 @@ body {
     flex-direction: column;
 }
 
+#errorLoginMessage,
+#errorMessage {
+    padding: 10px 0px;
+    color: red;
+    font-weight: 600;
+}
+
 @media (min-width: 920px) {
     .features {
         flex-direction: row;
@@ -138,7 +148,6 @@ body {
 }
 
 .feature-icon {
-    width: 100px;
     border: 10px solid #00bc77;
     border-radius: 50%;
     padding: 1rem;
@@ -290,5 +299,25 @@ body {
 
     .transaction-button {
         width: 200px;
+    }
+}
+
+@media (max-width: 425px) {
+    .main-nav-logo {
+        width: 150px;
+    }
+
+    .main-nav a {
+        font-size: 0.85rem;
+    }
+
+    .main-nav-item {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .main-nav i {
+        padding: 0 3px;
     }
 }

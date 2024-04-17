@@ -1,11 +1,9 @@
-// import PropTypes from "prop-types";
-import "../../css/main.css"
+import "../../css/main.css";
 
 function Transaction({ title, amount, description }) {
     return (
-
         <>
-            <section className="account" >
+            <section className="account">
                 <div className="account-content-wrapper">
                     <h3 className="account-title">{title}</h3>
                     <p className="account-amount">{amount}</p>
@@ -16,9 +14,6 @@ function Transaction({ title, amount, description }) {
                 </div>
             </section>
         </>
-
-
-
-    )
+    );
 }
-export default Transaction
+export default Transaction;
