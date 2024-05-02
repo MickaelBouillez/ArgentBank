@@ -1,354 +1,367 @@
 swagger: "2.0"
 info:
-  title: Bank Argent API documentation # Titre de l'API
-  description: Contains all available API endpoints in this codebase # Description générale de l'API
-  version: "1.0.0" # Version de l'API
-  termsOfService: "http://swagger.io/terms/" # Conditions d'utilisation
-host: localhost:3001 # Hôte où l'API est accessible
-basePath: /api/v1 # Chemin de base de l'API
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  version: "1.0.0"
+  termsOfService: "http://swagger.io/terms/"
+host: localhost:3001
+basePath: /api/v1
 schemes:
-  - http # Protocole pris en charge (HTTP)
+  - http
 
 paths:
-  /user/login: # Chemin pour l'endpoint de connexion utilisateur
-    post: # Méthode HTTP POST pour cette route
+  /user/login:
+    post:
       tags:
-        - User Module # Tag pour le module utilisateur
-      summary: Login # Résumé de la fonctionnalité de cette route
-      description: API for Login # Description détaillée de la route
+        - User Module
+      summary: Login
+      description: API for Login
       parameters:
-        - in: body # Paramètre dans le corps de la requête
-          name: body # Nom du paramètre
-          description: Login Payload # Description du paramètre
-          required: true # Le paramètre est requis
+        - in: body
+          name: body
+          description: Login Payload
+          required: true
           schema:
-            $ref: "#/definitions/Login" # Référence à la définition de modèle Login
+            $ref: "#/definitions/Login"
       produces:
-        - application/json # Type de contenu produit
+        - application/json
       responses:
-        "200": # Réponse HTTP 200 (OK)
-          description: Login Successfully # Description de la réponse
+        "200":
+          description: Login Successfully
           schema:
-            $ref: "#/definitions/LoginResponse" # Référence à la définition de modèle LoginResponse
-        "400": # Réponse HTTP 400 (Bad Request)
-          description: Invalid Fields # Description de la réponse
-        "500": # Réponse HTTP 500 (Internal Server Error)
-          description: Internal Server Error # Description de la réponse
+            $ref: "#/definitions/LoginResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
 
-  /user/signup: # Chemin pour l'endpoint d'inscription utilisateur
-    post: # Méthode HTTP POST pour cette route
+  /user/signup:
+    post:
       tags:
-        - User Module # Tag pour le module utilisateur
-      summary: Signup # Résumé de la fonctionnalité de cette route
-      description: API for Signup # Description détaillée de la route
+        - User Module
+      summary: Signup
+      description: API for Signup
       parameters:
-        - in: body # Paramètre dans le corps de la requête
-          name: body # Nom du paramètre
-          description: Signup Payload # Description du paramètre
-          required: true # Le paramètre est requis
+        - in: body
+          name: body
+          description: Signup Payload
+          required: true
           schema:
-            $ref: "#/definitions/User" # Référence à la définition de modèle User
+            $ref: "#/definitions/User"
       produces:
-        - application/json # Type de contenu produit
+        - application/json
       responses:
-        "200": # Réponse HTTP 200 (OK)
-          description: Signup Successfully # Description de la réponse
+        "200":
+          description: Signup Successfully
           schema:
-            $ref: "#/definitions/ApiResponse" # Référence à la définition de modèle ApiResponse
-        "400": # Réponse HTTP 400 (Bad Request)
-          description: Invalid Fields # Description de la réponse
-        "500": # Réponse HTTP 500 (Internal Server Error)
-          description: Internal Server Error # Description de la réponse
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
 
-  /user/profile: # Chemin pour l'endpoint de profil utilisateur
-    post: # Méthode HTTP POST pour cette route
+  /user/profile:
+    post:
       security:
-        - Bearer: [] # Schéma de sécurité utilisé pour cette route
+        - Bearer: []
       tags:
-        - User Module # Tag pour le module utilisateur
-      summary: User Profile API # Résumé de la fonctionnalité de cette route
-      description: API for fetching a user profile # Description détaillée de la route
+        - User Module
+      summary: User Profile API
+      description: API for fetching a user profile
       responses:
-        "200": # Réponse HTTP 200 (OK)
-          description: User profile retrieved successully # Description de la réponse
+        "200":
+          description: User profile retrieved successully
           schema:
-            $ref: "#/definitions/ApiResponse" # Référence à la définition de modèle ApiResponse
-        "400": # Réponse HTTP 400 (Bad Request)
-          description: Invalid Fields # Description de la réponse
-        "500": # Réponse HTTP 500 (Internal Server Error)
-          description: Internal Server Error # Description de la réponse
-    put: # Méthode HTTP PUT pour cette route
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    put:
       security:
-        - Bearer: [] # Schéma de sécurité utilisé pour cette route
+        - Bearer: []
       tags:
-        - User Module # Tag pour le module utilisateur
-      summary: User Profile API # Résumé de la fonctionnalité de cette route
-      description: API for updating a user profile # Description détaillée de la route
+        - User Module
+      summary: User Profile API
+      description: API for updating a user profile
       parameters:
-        - in: body # Paramètre dans le corps de la requête
-          name: body # Nom du paramètre
-          description: Update user profile attributes # Description du paramètre
-          required: true # Le paramètre est requis
+        - in: body
+          name: body
+          description: Update user profile attributes
+          required: true
           schema:
-            $ref: "#/definitions/UserProfile" # Référence à la définition de modèle UserProfile
+            $ref: "#/definitions/UserProfile"
+        - in: header
+          name: token
+          description: Bearer Token
+          required: true
+          type: string
       produces:
-        - application/json # Type de contenu produit
+        - application/json
       responses:
-        "200": # Réponse HTTP 200 (OK)
-          description: User profile retrieved successully # Description de la réponse
+        "200":
+          description: User profile retrieved successully
           schema:
-            $ref: "#/definitions/ApiResponse" # Référence à la définition de modèle ApiResponse
-        "400": # Réponse HTTP 400 (Bad Request)
-          description: Invalid Fields # Description de la réponse
-        "500": # Réponse HTTP 500 (Internal Server Error)
-          description: Internal Server Error # Description de la réponse
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
 
-  /user/accounts: # Chemin pour l'endpoint des comptes utilisateur
-    get: # Méthode HTTP GET pour cette route
+  /user/accounts:
+    get:
       security:
-        - Bearer: [] # Schéma de sécurité utilisé pour cette route
+        - Bearer: []
       tags:
-        - Transaction Module # Tag pour le module de transaction
-      summary: User Account API # Résumé de la fonctionnalité de cette route
-      description: API for retrieving all user account # Description détaillée de la route
+        - Transaction Module
+      summary: User Account API
+      description: API for retrieving all user account
       parameters:
-        - in: header # Paramètre dans l'en-tête de la requête
-          name: token # Nom du paramètre
-          description: Bearer Token # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
+        - in: header
+          name: token
+          description: Bearer Token
+          required: true
+          type: string
       produces:
-        - application/json # Type de contenu produit
+        - application/json
       responses:
-        "200": # Réponse HTTP 200 (OK)
-          description: The transactions have been successfully retrieved. # Description de la réponse
+        "200":
+          description: The transactions have been successfully retrieved.
           schema:
-            type: array # Type de données retournées (tableau)
-            items: { $ref: "#/definitions/UserAccount" } # Référence à la définition de modèle UserAccount
-        "400": # Réponse HTTP 400 (Bad Request)
-          description: Invalid Fields # Description de la réponse en cas de champs invalides
-        "401": # Réponse HTTP 401 (Unauthorized)
-          description: UnAuthorized # Description de la réponse en cas d'autorisation non accordée
-        "500": # Réponse HTTP 500 (Internal Server Error)
-          description: Internal Server Error # Description de la réponse en cas d'erreur interne du serveur
+            type: array
+            items: { $ref: "#/definitions/UserAccount" }
+        "400":
+          description: Invalid Fields
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
 
-  /user/{account_id}/transactions: # Chemin pour l'endpoint des transactions utilisateur
-    get: # Méthode HTTP GET pour cette route
+  /user/{account_id}/transactions:
+    get:
       security:
-        - Bearer: [] # Schéma de sécurité utilisé pour cette route
+        - Bearer: []
       tags:
-        - Transaction Module # Tag pour le module de transaction
-      summary: User Account API # Résumé de la fonctionnalité de cette route
-      description: API for retrieving user transactions # Description détaillée de la route
+        - Transaction Module
+      summary: User Account API
+      description: API for retrieving user transactions
       parameters:
-        - in: header # Paramètre dans l'en-tête de la requête
-          name: token # Nom du paramètre
-          description: Bearer Token # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
-        - in: path # Paramètre dans le chemin de la requête
-          name: account_id # Nom du paramètre
-          description: ID of the Account # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
-        - in: query # Paramètre dans la query string de la requête
-          name: month # Nom du paramètre
-          description: Filter transactions for a specific month (2024-01) # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
+        - in: header
+          name: token
+          description: Bearer Token
+          required: true
+          type: string
+        - in: path
+          name: account_id
+          description: ID of the Account
+          required: true
+          type: string
+        - in: query
+          name: month
+          description: Filter transactions for a specific month (2024-01)
+          required: true
+          type: string
       produces:
-        - application/json # Type de contenu produit
+        - application/json
       responses:
-        "200": # Réponse HTTP 200 (OK)
-          description: The transactions have been successfully retrieved. # Description de la réponse
+        "200":
+          description: The transactions have been successfully retrieved.
           schema:
-            type: array # Type de données retournées (tableau)
-            items: { $ref: "#/definitions/UserTransaction" } # Référence à la définition de modèle UserTransaction
-        "400": # Réponse HTTP 400 (Bad Request)
-          description: Invalid Fields # Description de la réponse en cas de champs invalides
-        "401": # Réponse HTTP 401 (Unauthorized)
-          description: UnAuthorized # Description de la réponse en cas d'autorisation non accordée
-        "404": # Réponse HTTP 404 (Not Found)
-          description: Not Found # Description de la réponse en cas de ressource non trouvée
-        "500": # Réponse HTTP 500 (Internal Server Error)
-          description: Internal Server Error # Description de la réponse en cas d'erreur interne du serveur
+            type: array
+            items: { $ref: "#/definitions/UserTransaction" }
+        "400":
+          description: Invalid Fields
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
 
-  /user/{account_id}/transactions/{transaction_id}: # Chemin pour l'endpoint d'une transaction utilisateur spécifique
-    get: # Méthode HTTP GET pour cette route
+  /user/{account_id}/transactions/{transaction_id}:
+    get:
       security:
-        - Bearer: [] # Schéma de sécurité utilisé pour cette route
+        - Bearer: []
       tags:
-        - Transaction Module # Tag pour le module de transaction
-      summary: User Transaction API # Résumé de la fonctionnalité de cette route
-      description: API for retrieving a user transaction # Description détaillée de la route
+        - Transaction Module
+      summary: User Transaction API
+      description: API for retrieving a user transaction
       parameters:
-        - in: path # Paramètre dans le chemin de la requête
-          name: account_id # Nom du paramètre
-          description: ID Account # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
-        - in: path # Paramètre dans le chemin de la requête
-          name: transaction_id # Nom du paramètre
-          description: ID of the transaction to be updated # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
+        - in: path
+          name: account_id
+          description: ID Account
+          required: true
+          type: string
+        - in: path
+          name: transaction_id
+          description: ID of the transaction to be updated
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: Bearer Token
+          required: true
+          type: string
       produces:
-        - application/json # Type de contenu produit
+        - application/json
       responses:
-        "200": # Réponse HTTP 200 (OK)
-          description: The transactions have been successfully retrieved. # Description de la réponse
+        "200":
+          description: The transactions have been successfully retrieved.
           schema:
-            $ref: "#/definitions/UserTransaction" # Référence à la définition de modèle UserTransaction
-        "400": # Réponse HTTP 400 (Bad Request)
-          description: Invalid Fields # Description de la réponse en cas de champs invalides
-        "401": # Réponse HTTP 401 (Unauthorized)
-          description: UnAuthorized # Description de la réponse en cas d'autorisation non accordée
-        "404": # Réponse HTTP 404 (Not Found)
-          description: Not Found # Description de la réponse en cas de ressource non trouvée
-        "500": # Réponse HTTP 500 (Internal Server Error)
-          description: Internal Server Error # Description de la réponse en cas d'erreur interne du serveur
-    put: # Méthode HTTP PUT pour cette route
+            $ref: "#/definitions/UserTransaction"
+        "400":
+          description: Invalid Fields
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+    put:
       security:
-        - Bearer: [] # Schéma de sécurité utilisé pour cette route
+        - Bearer: []
       tags:
-        - Transaction Module # Tag pour le module de transaction
-      summary: User Transaction API # Résumé de la fonctionnalité de cette route
-      description: API for updating a transaction # Description détaillée de cette route
+        - Transaction Module
+      summary: User Transaction API
+      description: API for updating a transaction
       parameters:
-        - in: path # Paramètre dans le chemin de la requête
-          name: account_id # Nom du paramètre
-          description: ID of the user account # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
-        - in: path # Paramètre dans le chemin de la requête
-          name: transaction_id # Nom du paramètre
-          description: ID of the transaction to update # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
-        - in: header # Paramètre dans l'en-tête de la requête
-          name: token # Nom du paramètre
-          description: Bearer Token # Description du paramètre
-          required: true # Le paramètre est requis
-          type: string # Type de données attendu
-        - in: body # Paramètre dans le corps de la requête
-          name: body # Nom du paramètre
-          description: Update Transaction attributes # Description du paramètre
-          required: true # Le paramètre est requis
+        - in: path
+          name: account_id
+          description: ID of the user account
+          required: true
+          type: string
+        - in: path
+          name: transaction_id
+          description: ID of the transaction to update
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: Bearer Token
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update Transaction attributes
+          required: true
           schema:
-            $ref: "#/definitions/UpdateTransaction" # Référence à la définition de modèle UpdateTransaction
+            $ref: "#/definitions/UpdateTransaction"
       produces:
-        - application/json # Type de contenu produit
+        - application/json
       responses:
-        "200": # Réponse HTTP 200 (OK)
-          description: Transaction updated # Description de la réponse
+        "200":
+          description: Transaction updated
           schema:
-            $ref: "#/definitions/UpdateTransaction" # Référence à la définition de modèle UpdateTransaction
-        "400": # Réponse HTTP 400 (Bad Request)
-          description: Invalid Fields # Description de la réponse en cas de champs invalides
-        "404": # Réponse HTTP 404 (Not Found)
-          description: Not Found # Description de la réponse en cas de ressource non trouvée
-        "500": # Réponse HTTP 500 (Internal Server Error)
-          description: Internal Server Error # Description de la réponse en cas d'erreur interne du serveur
+            $ref: "#/definitions/UpdateTransaction"
+        "400":
+          description: Invalid Fields
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
 
-securityDefinitions: # Définitions de sécurité utilisées dans l'API
-  Bearer: # Schéma d'authentification Bearer Token
-    type: apiKey # Type d'authentification
-    name: Authorization # Nom de l'en-tête
-    in: header # Emplacement de l'authentification
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 
-definitions: # Définitions de modèles utilisées dans l'API
-  User: # Modèle de données utilisateur
-    properties: # Propriétés du modèle
-      email: # Propriété email
-        type: string # Type de données
-        description: user email # Description de la propriété
-      password: # Propriété password
-        type: string # Type de données
-        description: user password # Description de la propriété
-      firstName: # Propriété firstName
-        type: string # Type de données
-        description: user first name # Description de la propriété
-      lastName: # Propriété lastName
-        type: string # Type de données
-        description: user last name # Description de la propriété
-      userName: # Propriété userName
-        type: string # Type de données
-        description: user public name # Description de la propriété
-  Login: # Modèle de données pour la connexion utilisateur
-    properties: # Propriétés du modèle
-      email: # Propriété email
-        type: string # Type de données
-        description: user email # Description de la propriété
-      password: # Propriété password
-        type: string # Type de données
-        description: user password # Description de la propriété
-  ApiResponse: # Modèle de réponse API générale
-    type: object # Type de données
-    properties: # Propriétés du modèle
-      status: # Propriété status
-        type: integer # Type de données
-      message: # Propriété message
-        type: string # Type de données
-      body: # Propriété body
-        type: object # Type de données
-        properties: # Propriétés du modèle
-          id: # Propriété id
-            type: string # Type de données
-          email: # Propriété email
-            type: string # Type de données
-  LoginResponse: # Modèle de réponse pour la connexion utilisateur
-    type: object # Type de données
-    properties: # Propriétés du modèle
-      token: # Propriété token
-        type: string # Type de données
-  UserProfile: # Modèle de données pour le profil utilisateur
-    type: object # Type de données
-    properties: # Propriétés du modèle
-      userName: # Propriété userName
-        type: string # Type de données
-  UserAccount: # Modèle de données pour le compte utilisateur
-    type: object # Type de données
-    properties: # Propriétés du modèle
-      account_id: # Propriété account_id
-        type: string # Type de données
-      balance: # Propriété balance
-        type: number # Type de données
-        format: float # Format des données (nombre à virgule flottante)
-    required: # Propriétés requises
-      - account_id # Propriété account_id
-      - balance # Propriété balance
-    example: # Exemple de données pour ce modèle
-      account_id: "123456" # Exemple d'ID de compte
-      balance: 1000.50 # Exemple de solde
-  UserTransaction: # Modèle de données pour une transaction utilisateur
-    type: object # Type de données
-    properties: # Propriétés du modèle
-      transaction_id: # Propriété transaction_id
-        type: string # Type de données
-      date: # Propriété date
-        type: string # Type de données
-        format: date # Format des données (date)
-      description: # Propriété description
-        type: object # Type de données
-        properties: # Propriétés du modèle
-          transaction_type: # Propriété transaction_type
-            type: string # Type de données
-          category: # Propriété category
-            type: string # Type de données
-          note: # Propriété note
-            type: string # Type de données
-      amount: # Propriété amount
-        type: number # Type de données
-        format: float # Format des données (nombre à virgule flottante)
-      balance: # Propriété balance
-        type: number # Type de données
-        format: float # Format des données (nombre à virgule flottante)
-  UpdateTransaction: # Modèle de données pour la mise à jour d'une transaction
-    type: object # Type de données
-    properties: # Propriétés du modèle
-      transaction_type: # Propriété transaction_type
-        type: string # Type de données
-      category: # Propriété category
-        type: string # Type de données
-      note: # Propriété note
-        type: string # Type de données
+definitions:
+  User:
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+      firstName:
+        type: string
+        description: user first name
+      lastName:
+        type: string
+        description: user last name
+      userName:
+        type: string
+        description: user public name
+  Login:
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+  ApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+          email:
+            type: string
+  LoginResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  UserProfile:
+    type: object
+    properties:
+      userName:
+        type: string
+  UserAccount:
+    type: object
+    properties:
+      account_id:
+        type: string
+      balance:
+        type: number
+        format: float
+    required:
+      - account_id
+      - balance
+    example:
+      account_id: "123456"
+      balance: 1000.50
+  UserTransaction:
+    type: object
+    properties:
+      transaction_id:
+        type: string
+      date:
+        type: string
+        format: date
+      description:
+        type: object
+        properties:
+          transaction_type:
+            type: string
+          category:
+            type: string
+          note:
+            type: string
+      amount:
+        type: number
+        format: float
+      balance:
+        type: number
+        format: float
+  UpdateTransaction:
+    type: object
+    properties:
+      transaction_type:
+        type: string
+        description: Type of transaction (non-editable)
+      category:
+        type: string
+      note:
+        type: string
